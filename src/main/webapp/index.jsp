@@ -227,8 +227,8 @@
       footer{ flex-direction:column; gap:12px; align-items:flex-start }
     }
     .socials a img{
-        width:30px;
-        height:30px;
+        width:40px;
+        height:40px;
         display: inline-block;
     }
     .socials a:hover {
