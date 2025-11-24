@@ -227,7 +227,7 @@
       footer{ flex-direction:column; gap:12px; align-items:flex-start }
     }
     .socials a img{
-        width:40px;
+        width:43px;
         height:40px;
         display: inline-block;
     }
@@ -253,7 +253,7 @@
 
     <nav class="nav-links" aria-label="Primary navigation">
       <a href="#destinations">Destinations</a>
-      <a href="#packages">Packages</a>
+      <a href="packages">Packages</a>
       <a href="#types">Trip Types</a>
       <a href="#testimonials">Testimonials</a>
       <a href="#contact">Contact</a>
@@ -274,12 +274,12 @@
         <p class="hero-lead">Travo centralizes trip management for solo travelers, families, and agencies — personalized packages, automated booking and easy management for admins. Discover curated packages or build your own itinerary.</p>
 
         <div class="hero-actions">
-          <button class="btn btn-primary" onclick="scrollTo('packages')">Explore Packages</button>
-          <button class="btn btn-ghost" onclick="scrollTo('types')">See Trip Types</button>
+          <button class="btn btn-primary" onclick="scrollTo('packages')"><a href="Packages" style="text-decoration:none">Explore Packages</a></button>
+          <button class="btn btn-ghost" onclick="scrollTo('types')"><a href="#types" style="text-decoration:none">See Trip Types</a></button>
         </div>
 
         <div class="search-panel" role="search" aria-label="Search packages">
-          <input type="text" id="search-dest" placeholder="Search destination (e.g. Paris, Bali)" />
+          <input type="text" id="search-dest" placeholder="Search destination" />
           <select id="search-type" aria-label="Trip type">
             <option value="">All types</option>
             <option value="solo">Solo</option>
@@ -326,7 +326,10 @@
           <h3 class="section-title">Featured Destinations</h3>
           <div class="section-sub">Hand-picked destinations with recommended packages</div>
         </div>
-        <div><a class="btn btn-ghost" href="Register.html">View all</a></div>
+        <div><a href="packages" class="btn btn-ghost">
+    View all
+</a>
+</div>
       </div>
 
       <div class="grid">
@@ -346,7 +349,7 @@
 
         <div class="package-card">
           <div class="pkg-image">
-            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=60&auto=format&fit=crop" alt="Bali" style="height:100%;object-fit:cover" />
+            <img src="https://images.contentstack.io/v3/assets/blt06f605a34f1194ff/bltcfc6b43976428fbc/6809096142b2cad8807c3cee/BCC-2025-EXPLORER-BALI-BEACHES-HEADER_MOBILE.jpg?fit=crop&disable=upscale&auto=webp&quality=60&crop=smart" alt="Bali" style="height:100%;object-fit:cover" />
           </div>
           <div class="pkg-details">
             <h3>Bali — Tropical Relaxation</h3>
@@ -395,7 +398,7 @@
           <h3 class="section-title">Trip Types</h3>
           <div class="section-sub">Built-in templates to quickly create trips</div>
         </div>
-        <div><a class="btn btn-ghost" href="Register.html">Open Trip Builder</a></div>
+        <div><a class="btn btn-ghost" href="Register.jsp">Open Trip Builder</a></div>
       </div>
 
       <div class="grid">
@@ -493,7 +496,7 @@
           <div class="section-sub">Contact us or create an account to start building trips.</div>
         </div>
         <div>
-          <button class="btn btn-primary" onclick="scrollTo('register')">Create Account</button>
+          <button class="btn btn-primary" onclick="scrollTo('register')"><a href="Register.jsp" style="text-decoration:none">Create Account</a></button>
         </div>
       </div>
 
@@ -512,9 +515,9 @@
 
         <div style="min-width:260px; max-width:320px; background:linear-gradient(180deg, rgba(92,46,145,0.06), transparent); padding:16px; border-radius:14px;">
           <h4 style="color:var(--primary); margin:0 0 6px">Office</h4>
-          <p style="color:var(--muted); margin:0 0 12px">Bengaluru, India • travo@gmail.com</p>
+          <p style="color:var(--primary); margin:0 0 12px">Bengaluru, India • travo@gmail.com</p>
           <h4 style="color:var(--primary); margin:0 0 6px">Support</h4>
-          <p style="color:var(--muted); margin:0">Mon–Sat, 9am–9pm IST</p>
+          <p style="color:var(--primary); margin:0">Mon–Sat, 9am–9pm IST</p>
         </div>
       </div>
     </section>

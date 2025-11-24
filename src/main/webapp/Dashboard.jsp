@@ -1,35 +1,14 @@
 <%@page import="com.travoapp.model.dto.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-@keyframes bounce {
-  0%, 100% { 
-  transform: translateY(0);
-  }
-  50% { 
-  transform: translateY(-10px);
-  }
-}
-h2 {
-  animation: bounce 1s infinite;
-  font-weight: bold;
-  color: #5C2E91;
-}
-h1{
-color:#5C2E91;
-
-}
-
-
-
-</style>
+  <meta charset="utf-8" />
+  <title>Travo — Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard.css">
 </head>
-
 <body>
 <%
 Users u=(Users)session.getAttribute("users");
@@ -42,10 +21,42 @@ if(u==null){
 	request.getRequestDispatcher("Login.jsp").include(request, response);
 	return;
 }
-
 %>
-<h1>Welcome back, <%= u.getName()%> </h1>
-<h2>Where would you like to go today?</h2>
+  <div class="container">
+
+    <!-- NAVBAR -->
+    <header class="navbar fade-in">
+      <div class="nav-left">
+        <!-- local logo (use your uploaded path) -->
+        <img class="logo" src="./Assets/travo-removebg-preview.png" alt="Travo Logo">
+      </div>
+
+      <div class="nav-links">
+        <a href="<%= request.getContextPath() %>/packages">Packages</a>
+        <a href="#">Bookings</a>
+        <a href="#">Agencies</a>
+        <a href="#">Profile</a>
+      </div>
+
+      <div class="top-controls">
+        <button class="btn ghost">Export</button>
+        <button class="btn">Create Booking</button>
+      </div>
+    </header>
+
+    <!-- include sections -->
+    <%@ include file="includes/searchBar.jsp" %>
+    <%@ include file="includes/stats.jsp" %>
+    <%@ include file="includes/popularDestinations.jsp" %>
+    <%@ include file="includes/offers.jsp" %>
+    <%@ include file="includes/tripPlans.jsp" %>
+    <%@ include file="includes/topAgencies.jsp" %>
+    <%@ include file="includes/recommended.jsp" %>
+    <%@ include file="includes/upcomingTrips.jsp" %>
+    <%@ include file="includes/travelGuide.jsp" %>
+    <%@ include file="includes/recentBookings.jsp" %>
+
+  </div>
 
 </body>
 </html>

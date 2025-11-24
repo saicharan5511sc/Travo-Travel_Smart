@@ -194,13 +194,13 @@
                     <input required type="password" name="password" placeholder="Enter your password">
                 </div>
 
-                <div class="form-group">
+            <!--   <div class="form-group">
                     <label>Role</label>
                     <select name="role">
                         <option value="User">User</option>
                         <option value="Admin">Admin</option>
                     </select>
-                </div>
+                </div>-->
 
                 <button class="btn">Login</button>
             </form>
