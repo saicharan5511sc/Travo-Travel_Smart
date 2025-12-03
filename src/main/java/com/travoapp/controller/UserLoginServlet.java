@@ -24,15 +24,15 @@ public class UserLoginServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String email= req.getParameter("email");
 		String password =req.getParameter("password");
-		Users u=udao.loginUser(email, password);
+		Users users=udao.loginUser(email, password);
 		HttpSession session=req.getSession();
 		resp.setContentType("text/html");
 		PrintWriter out= resp.getWriter();
-            if(u!=null) {
+            if(users!=null) {
 			
-			session.setAttribute("users", u);
+			session.setAttribute("users", users);
 			//out.print("Logged In Successfully");
-			req.getRequestDispatcher("Dashboard.jsp").include(req, resp);
+			resp.sendRedirect("dashboard");
 			
 		          }
             

@@ -1,5 +1,10 @@
 eclipse.preferences.version=1
+encoding//src/main/webapp/bookPackage.jsp=UTF-8
+encoding//src/main/webapp/confirmation.jsp=UTF-8
 encoding//src/main/webapp/includes/popularDestinations.jsp=UTF-8
+encoding//src/main/webapp/includes/recentBookings.jsp=UTF-8
+encoding//src/main/webapp/includes/recommended.jsp=UTF-8
 encoding//src/main/webapp/includes/searchBar.jsp=UTF-8
 encoding//src/main/webapp/includes/stats.jsp=UTF-8
+encoding//src/main/webapp/includes/topAgencies.jsp=UTF-8
 encoding//src/main/webapp/index.jsp=UTF-8

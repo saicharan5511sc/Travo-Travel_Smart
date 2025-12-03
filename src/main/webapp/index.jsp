@@ -238,6 +238,10 @@
     }
 
   </style>
+  <link rel="icon" href="./Assets/favicon2-32x32.png" type="image/png">
+<link rel="icon" href="./Assets/favicon2.ico" type="image/x-icon">
+
+  
 </head>
 
 <body>
@@ -274,7 +278,7 @@
         <p class="hero-lead">Travo centralizes trip management for solo travelers, families, and agencies — personalized packages, automated booking and easy management for admins. Discover curated packages or build your own itinerary.</p>
 
         <div class="hero-actions">
-          <button class="btn btn-primary" onclick="scrollTo('packages')"><a href="Packages" style="text-decoration:none">Explore Packages</a></button>
+          <button class="btn btn-primary" onclick="scrollTo('packages')"><a href="packages" style="text-decoration:none">Explore Packages</a></button>
           <button class="btn btn-ghost" onclick="scrollTo('types')"><a href="#types" style="text-decoration:none">See Trip Types</a></button>
         </div>
 
@@ -488,7 +492,6 @@
       </div>
     </section>
 
-    <!-- CTA + CONTACT -->
     <section class="section" id="contact" style="padding-bottom:120px;">
       <div class="section-head">
         <div>

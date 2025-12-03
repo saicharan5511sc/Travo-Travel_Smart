@@ -1,6 +1,7 @@
 package com.travoapp.model.dto;
 
 public class Users {
+	private int UserId;
 	private String name;
 	private String email;
 	private String password;
@@ -11,11 +12,18 @@ public class Users {
 	}
 	public Users(String name, String email, String password, long phone, String city) {
 		super();
+
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.phone = phone;
 		this.city = city;
+	}
+	public int getUserId() {
+		return UserId;
+	}
+	public void setUserId(int userId) {
+		UserId = userId;
 	}
 	public String getName() {
 		return name;

@@ -1,3 +1,4 @@
+<%@page import="com.travoapp.model.dto.Users"%>
 <%@ page import="java.util.*, com.travoapp.model.dto.Package" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -132,6 +133,10 @@
             transform: translateY(-2px);
             background: #492275;
         }
+        .nullbook{
+        display: flex;
+        }
+        
     </style>
 </head>
 
@@ -164,9 +169,25 @@
                 <div class="pkg-footer">
                     <div class="price">₹<%= pkg.getPrice() %></div>
 
-                    <form action="BookingServlet" method="post">
+<% Users u=(Users)session.getAttribute("users");
+if(u==null){
+	%>
+	<form action="Login.jsp" method="post">
                         <input type="hidden" name="packageId" value="<%= pkg.getPackageId() %>">
-                        <button class="book-btn">Book Now</button>
+                       <button class="book-btn">Book Now</button>
+                    </form></div>
+
+            </div>
+
+        </div>
+       <%         
+
+}else{
+%>
+                    <form action="packageDetails" method="get">
+                        <input type="hidden" name="packageId" value="<%= pkg.getPackageId() %>">
+                        <input type="hidden" name="packageimg" value="<%= pkg.getImageUrl() %>">
+                       <button class="book-btn">Book Now</button>
                     </form>
                 </div>
 
@@ -175,6 +196,7 @@
         </div>
 
         <%
+}
                 }
             } else {
         %>

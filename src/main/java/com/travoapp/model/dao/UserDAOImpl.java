@@ -49,7 +49,7 @@ public Users loginUser(String email, String password) {
 		ResultSet rs=pstmt.executeQuery();
 		if (rs.next()) {
 			u=new Users();
-
+			u.setUserId(rs.getInt("user_id"));
 			u.setName(rs.getString("name"));
 			u.setEmail(rs.getString("email"));
 			u.setPassword(rs.getString("password"));
@@ -63,6 +63,11 @@ public Users loginUser(String email, String password) {
 		e.printStackTrace();
 	}
 	return u;
+}
+@Override
+public Users findUserById(int id) {
+	
+	return null;
 }
 
 
