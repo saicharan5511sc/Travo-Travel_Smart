@@ -188,17 +188,13 @@
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="lead_email" required>
-                    </div>
+       
 
-                    <div class="form-group">
+                   <!--   <div class="form-group">
                         <label>Phone Number</label>
                         <input type="text" name="lead_phone" required>
                     </div>
-                </div>
+                </div>-->
 
                 <div class="form-row">
                     <div class="form-group">
