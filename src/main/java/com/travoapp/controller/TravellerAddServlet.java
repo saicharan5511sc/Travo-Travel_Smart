@@ -27,7 +27,7 @@ public class TravellerAddServlet extends HttpServlet{
 		TravellerDetails traveller=new TravellerDetails(fullname,age,gender,idproof,idnumber,medicalconditions);
 		boolean isAdded=tDao.addTraveller(traveller);
 		if(isAdded) {
-			req.getRequestDispatcher("TravellerDisplayServlet.java").forward(req, resp);
+			req.getRequestDispatcher("travellerDisplay").forward(req, resp);
 		}else {
 			
 		}
