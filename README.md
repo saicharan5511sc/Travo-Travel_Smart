@@ -41,7 +41,7 @@ create database travo;
 2. Add Apache Tomcat server  
 3. Start the server  
 4. Open the project in your browser:  
-http://localhost:8080/Travo
+
 
 ## What This Project Demonstrates
 Travo shows strong fundamentals in Java based web development. It highlights your skills in JSP and Servlets, MVC application flow, database design and SQL, form validation, session handling, and building a working web application from scratch.
