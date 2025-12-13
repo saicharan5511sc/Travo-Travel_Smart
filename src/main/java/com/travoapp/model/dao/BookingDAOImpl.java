@@ -1,11 +1,15 @@
 package com.travoapp.model.dao;
 
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import com.travoapp.model.dto.*;
+import com.travoapp.dbutils.ProvideConnection;
+import com.travoapp.model.dto.Booking;
 import com.travoapp.model.dto.Package;
-import com.travoapp.dbutils.*;
 
 public class BookingDAOImpl implements BookingDAO {
 
@@ -27,7 +31,9 @@ public class BookingDAOImpl implements BookingDAO {
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next()) list.add(extractBooking(rs));
+            while (rs.next()) {
+				list.add(extractBooking(rs));
+			}
 
         } catch (Exception e) { e.printStackTrace(); }
 
@@ -52,14 +58,16 @@ public class BookingDAOImpl implements BookingDAO {
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next()) list.add(extractBooking(rs));
+            while (rs.next()) {
+				list.add(extractBooking(rs));
+			}
 
         } catch (Exception e) { e.printStackTrace(); }
 
         return list;
     }
 
- 
+
     @Override
     public int countUpcomingTrips(int userId) {
         return getCount("SELECT COUNT(*) FROM bookings WHERE user_id=? AND travel_date > NOW()", userId);
@@ -82,14 +90,16 @@ public class BookingDAOImpl implements BookingDAO {
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) return rs.getInt(1);
+            if (rs.next()) {
+				return rs.getInt(1);
+			}
 
         } catch (Exception e) { e.printStackTrace(); }
 
         return 0;
     }
 
-  
+
     @Override
     public List<Package> getPopularDestinations() {
         List<Package> list = new ArrayList<>();
@@ -118,7 +128,7 @@ public class BookingDAOImpl implements BookingDAO {
     }
 
 
- 
+
     @Override
     public List<Booking> getRecommendedTrips(int userId) {
         List<Booking> list = new ArrayList<>();
@@ -134,14 +144,16 @@ public class BookingDAOImpl implements BookingDAO {
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
-            while (rs.next()) list.add(extractBooking(rs));
+            while (rs.next()) {
+				list.add(extractBooking(rs));
+			}
 
         } catch (Exception e) { e.printStackTrace(); }
 
         return list;
     }
 
- 
+
     @Override
     public List<String> getOffers() {
         return Arrays.asList(
@@ -153,7 +165,7 @@ public class BookingDAOImpl implements BookingDAO {
         );
     }
 
-   
+
     private Booking extractBooking(ResultSet rs) throws Exception {
         return new Booking(
                 rs.getInt("booking_id"),
@@ -164,7 +176,7 @@ public class BookingDAOImpl implements BookingDAO {
                 rs.getString("booking_date"),
                 rs.getString("travel_date"),
                 rs.getString("status"),
-                rs.getDouble("price"),     
+                rs.getDouble("price"),
                 rs.getString("image_url")
         );
     }

@@ -10,13 +10,13 @@ public class Booking {
     private String destination;
     private String tripType;
 
-    private String bookingDate;    
-    private String travelDate;      
-    private String status;         
+    private String bookingDate;
+    private String travelDate;
+    private String status;
 
     private double amount;
 
-    private String imageUrl;        
+    private String imageUrl;
 
     public Booking() {}
 

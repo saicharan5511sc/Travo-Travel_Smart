@@ -7,9 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.travoapp.model.dto.Package;
-
 import com.travoapp.dbutils.ProvideConnection;
+import com.travoapp.model.dto.Package;
 public class PackageDAOImpl implements PackageDAO {
 
     @Override
@@ -66,7 +65,8 @@ public class PackageDAOImpl implements PackageDAO {
         }
         return list;
     }
-    public Package getPackageById(int id) {
+    @Override
+	public Package getPackageById(int id) {
         Package pkg = null;
 
         Connection con = null;
@@ -91,11 +91,11 @@ public class PackageDAOImpl implements PackageDAO {
                 pkg.setPrice(rs.getDouble("price"));
                 pkg.setDescription(rs.getString("description"));
                 pkg.setImageUrl(rs.getString("image_url"));
-   
+
             }
 
             if (pkg != null) {
-         
+
                 pkg.setGalleryImages(fetchList(con, "SELECT image_url FROM package_images WHERE package_id=?", id));
                 pkg.setHighlights(fetchList(con, "SELECT highlight_text FROM package_highlights WHERE package_id=?", id));
                 pkg.setInclusions(fetchList(con, "SELECT inclusion_text FROM package_inclusions WHERE package_id=?", id));
@@ -142,7 +142,7 @@ public class PackageDAOImpl implements PackageDAO {
     private List<String> fetchItinerary(Connection con,String query, int id) throws SQLException {
         List<String> list = new ArrayList<>();
 
-  
+
         PreparedStatement ps = con.prepareStatement(query);
         ps.setInt(1, id);
         ResultSet rs = ps.executeQuery();

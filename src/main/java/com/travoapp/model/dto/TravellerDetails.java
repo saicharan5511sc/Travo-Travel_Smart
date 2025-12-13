@@ -1,6 +1,17 @@
 package com.travoapp.model.dto;
 
 public class TravellerDetails {
+
+private int travellerId;
+public int getTravellerId() {
+	return travellerId;
+}
+
+
+
+public void setTravellerId(int travellerId) {
+	this.travellerId = travellerId;
+}
 private String fullname;
 private int age;
 private String gender;
@@ -9,15 +20,17 @@ private String gender;
 private String idproof;
 private long idnumber;
 private String medicalconditions;
+private int userid;
+private int packageid;
 public TravellerDetails() {
-	
+
 }
 
 
 
-public TravellerDetails(String fullname, int age, String gender, //String email, long phone, 
+public TravellerDetails(String fullname, int age, String gender, //String email, long phone,
 		String idproof,
-		long idnumber, String medicalconditions) {
+		long idnumber, String medicalconditions,int userid,int packageid) {
 	super();
 	this.fullname = fullname;
 	this.age = age;
@@ -27,6 +40,32 @@ public TravellerDetails(String fullname, int age, String gender, //String email,
 	this.idproof = idproof;
 	this.idnumber = idnumber;
 	this.medicalconditions = medicalconditions;
+	this.userid=userid;
+	this.packageid=packageid;
+}
+
+
+
+public int getUserid() {
+	return userid;
+}
+
+
+
+public void setUserid(int userid) {
+	this.userid = userid;
+}
+
+
+
+public int getPackageid() {
+	return packageid;
+}
+
+
+
+public void setPackageid(int packageid) {
+	this.packageid = packageid;
 }
 
 
@@ -49,18 +88,7 @@ public String getGender() {
 public void setGender(String gender) {
 	this.gender = gender;
 }
-//public String getEmail() {
-//	return email;
-//}
-//public void setEmail(String email) {
-//	this.email = email;
-//}
-//public long getPhone() {
-//	return phone;
-//}
-//public void setPhone(long phone) {
-//	this.phone = phone;
-//}
+
 public String getIdproof() {
 	return idproof;
 }

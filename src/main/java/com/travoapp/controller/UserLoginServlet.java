@@ -29,16 +29,16 @@ public class UserLoginServlet extends HttpServlet{
 		resp.setContentType("text/html");
 		PrintWriter out= resp.getWriter();
             if(users!=null) {
-			
+
 			session.setAttribute("users", users);
 			//out.print("Logged In Successfully");
 			resp.sendRedirect("dashboard");
-			
+
 		          }
-            
+
 		            else {
 			out.println("LOGIN FAILED");
-			
+
 		}
 		//super.doPost(req, resp);
 	}

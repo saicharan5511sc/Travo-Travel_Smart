@@ -38,7 +38,7 @@ public class Package {
 
 
     public Package() {
-		
+
 	}
 
 
@@ -79,7 +79,7 @@ public class Package {
     public String getDescription() { return description; }
     public String getImageUrl() { return imageUrl; }
 
- 
+
 
     public List<String> getGalleryImages() {
         return galleryImages;

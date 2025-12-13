@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 import com.travoapp.dbutils.ProvideConnection;
 import com.travoapp.model.dto.Users;
 
@@ -18,14 +17,14 @@ Connection con=null;
 
 		try {
 			PreparedStatement pstmt=con.prepareStatement(register);
-			
+
 			pstmt.setString(1, u.getName());
 			pstmt.setString(2, u.getEmail());
 			pstmt.setString(3, u.getPassword());
 			pstmt.setLong(4, u.getPhone());
 			pstmt.setString(5, u.getCity());
-			
-			
+
+
 			int count=pstmt.executeUpdate();
 			if(count>0) {
 				return true;
@@ -34,7 +33,7 @@ Connection con=null;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return false;
 	}
 @Override
@@ -55,8 +54,8 @@ public Users loginUser(String email, String password) {
 			u.setPassword(rs.getString("password"));
 			u.setPhone(rs.getLong("phone"));
 			u.setCity(rs.getString("city"));
-			
-			
+
+
 		}
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -66,7 +65,7 @@ public Users loginUser(String email, String password) {
 }
 @Override
 public Users findUserById(int id) {
-	
+
 	return null;
 }
 

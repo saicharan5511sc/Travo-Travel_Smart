@@ -6,8 +6,8 @@ import com.travoapp.model.dto.TravellerDetails;
 
 public interface TravellerDetailsDAO {
 boolean addTraveller(TravellerDetails traveller);
-List<TravellerDetails> getTravellerDetails();
-boolean deleteTraveller(int idnumber);
-TravellerDetails findTravellerById(int idnumber);
+List<TravellerDetails> getTravellerDetails(int user_id,int package_id);
+boolean deleteTraveller(int traveller_id,int package_id);
+TravellerDetails findTravellerById(int traveller_id, int user_id, int package_id);
 boolean updateTraveller(TravellerDetails traveller);
 }

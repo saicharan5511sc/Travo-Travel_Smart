@@ -1,14 +1,12 @@
 package com.travoapp.controller;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
 
 import com.travoapp.model.dao.BookingDAO;
 import com.travoapp.model.dao.BookingDAOImpl;
 import com.travoapp.model.dao.PackageDAO;
 import com.travoapp.model.dao.PackageDAOImpl;
-import com.travoapp.model.dao.UserDAO;
-import com.travoapp.model.dao.UserDAOImpl;
 import com.travoapp.model.dto.Booking;
 import com.travoapp.model.dto.Package;
 import com.travoapp.model.dto.Users;
@@ -48,7 +46,7 @@ public class DashboardServlet extends HttpServlet {
 
         int userId = user.getUserId();
 
-      
+
         List<Booking> upcomingTrips = bookingDAO.findUpcomingTripsByUser(userId);
         List<Booking> recentBookings = bookingDAO.findRecentBookingsByUser(userId);
 
@@ -61,11 +59,11 @@ public class DashboardServlet extends HttpServlet {
 
         List<String> offers = bookingDAO.getOffers();
 
-    
+
         List<Package> allPackages = packageDAO.findPackageList(); // If you have this method
 
-        
-    
+
+
         request.setAttribute("upcomingTrips", upcomingTrips);
         request.setAttribute("recentBookings", recentBookings);
 
@@ -80,7 +78,7 @@ public class DashboardServlet extends HttpServlet {
 
         request.setAttribute("allPackages", allPackages);
 
-      
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("Dashboard.jsp");
         dispatcher.forward(request, response);
     }

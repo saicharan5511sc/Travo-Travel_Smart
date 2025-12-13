@@ -5,35 +5,76 @@ import java.io.IOException;
 import com.travoapp.model.dao.TravellerDetailsDAO;
 import com.travoapp.model.dao.TravellerDetailsDAOImpl;
 import com.travoapp.model.dto.TravellerDetails;
+import com.travoapp.model.dto.Users;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+@WebServlet("/TravellerUpdateServlet")
 public class TravellerUpdateServlet extends HttpServlet {
-	TravellerDetailsDAO tDao=null;
-	public TravellerUpdateServlet() {
-		tDao=new TravellerDetailsDAOImpl();
-	}
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		String fullname=req.getParameter("lead_name");
-		int age=Integer.parseInt(req.getParameter("lead_age"));
-		String gender=req.getParameter("lead_gender");
-		String idproof=req.getParameter("lead_id_type");
-		long idnumber= Long.parseLong(req.getParameter("lead_id_no"));
-		String medicalconditions=req.getParameter("lead_notes");
-		TravellerDetails traveller=new TravellerDetails(fullname,age,gender,idproof,idnumber,medicalconditions);
-		boolean isupdated=tDao.updateTraveller(traveller);
-		if(isupdated) {
-			resp.sendRedirect("");
-	
-	}
-		//super.doPost(req, resp);
-	}
-	
-	
-	
+
+    private TravellerDetailsDAO tDao;
+
+    public TravellerUpdateServlet() {
+        tDao = new TravellerDetailsDAOImpl();
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        // 1️⃣ Session validation (same as Add)
+        Users user = (Users) req.getSession().getAttribute("users");
+        if (user == null) {
+            resp.sendRedirect("Login.jsp");
+            return;
+        }
+
+        // 2️⃣ Read parameters safely
+        String travellerIdStr = req.getParameter("traveller_id");
+        String packageIdStr   = req.getParameter("package_id");
+
+        if (travellerIdStr == null || packageIdStr == null) {
+            resp.sendRedirect("error.jsp");
+            return;
+        }
+
+        int traveller_id = Integer.parseInt(travellerIdStr);
+        int package_id   = Integer.parseInt(packageIdStr);
+        int user_id      = user.getUserId();
+
+        // 3️⃣ Read form fields
+        String fullname = req.getParameter("name");
+        int age = Integer.parseInt(req.getParameter("age"));
+        String gender = req.getParameter("gender");
+        String idproof = req.getParameter("id_type");
+        long idnumber = Long.parseLong(req.getParameter("id_no"));
+        String medicalconditions = req.getParameter("notes");
+
+        // 4️⃣ Create TravellerDetails object (WITH traveller_id)
+        TravellerDetails traveller = new TravellerDetails();
+        traveller.setTravellerId(traveller_id);
+        traveller.setFullname(fullname);
+        traveller.setAge(age);
+        traveller.setGender(gender);
+        traveller.setIdproof(idproof);
+        traveller.setIdnumber(idnumber);
+        traveller.setMedicalconditions(medicalconditions);
+        traveller.setUserid(user_id);
+        traveller.setPackageid(package_id);
+
+        // 5️⃣ Update
+        boolean isUpdated = tDao.updateTraveller(traveller);
+
+        // 6️⃣ Redirect (same pattern as Add)
+        if (isUpdated) {
+            resp.sendRedirect("travellerDisplay?packageId=" + package_id);
+        } else {
+            resp.sendRedirect("TravellerEditFormServlet?traveller_id="
+                    + traveller_id + "&packageId=" + package_id);
+        }
+    }
 }
