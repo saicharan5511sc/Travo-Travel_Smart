@@ -11,12 +11,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/packageDetails")
 public class PackageDetailsServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-
     private PackageDAO packageDAO;
 
     @Override
@@ -29,10 +29,9 @@ public class PackageDetailsServlet extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-
             String idParam = request.getParameter("packageId");
-            String image=request.getParameter("packageimg");
-            System.out.println(idParam);
+            HttpSession session=request.getSession();
+
             if (idParam == null || idParam.isEmpty()) {
                 response.sendRedirect("error.jsp");
                 return;
@@ -41,18 +40,20 @@ public class PackageDetailsServlet extends HttpServlet {
             int packageId = Integer.parseInt(idParam);
 
             Package pkg = packageDAO.getPackageById(packageId);
-            request.setAttribute("errorMessage", "Package not found.");
+            
+
             if (pkg == null) {
-                response.sendRedirect("error.jsp");
+                request.setAttribute("errorMessage", "Package not found");
+                request.getRequestDispatcher("error.jsp").forward(request, response);
                 return;
             }
 
-
+         
             request.setAttribute("package", pkg);
-            request.setAttribute("packageImg", image);
+            session.setAttribute("packageId", packageId);
 
 
-            request.getRequestDispatcher("bookPackage.jsp?id="+packageId).forward(request, response);
+            request.getRequestDispatcher("bookPackage.jsp").forward(request, response);
 
         } catch (Exception e) {
             e.printStackTrace();

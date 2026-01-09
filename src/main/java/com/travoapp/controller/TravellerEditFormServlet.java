@@ -26,7 +26,7 @@ public class TravellerEditFormServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        // 1️⃣ Read request parameters safely
+       
         String travellerIdStr = req.getParameter("traveller_id");
         String packageIdStr   = req.getParameter("package_id");
 

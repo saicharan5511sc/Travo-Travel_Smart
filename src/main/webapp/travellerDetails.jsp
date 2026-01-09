@@ -5,6 +5,17 @@
 <%@page import="com.travoapp.model.dto.Package"%>
 <%@page import="com.travoapp.model.dto.TravellerDetails"%>
 
+<%
+Integer packageId = (Integer) session.getAttribute("packageId");
+if (packageId == null) {
+    response.sendRedirect("error.jsp");
+    return;
+}
+   
+    List<TravellerDetails> tList = (List<TravellerDetails>) request.getAttribute("travellerlist");
+    String travelDate = (String) session.getAttribute("travelDate"); // Get travel date from session
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,6 +107,9 @@
             font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .traveller-item {
@@ -134,84 +148,76 @@
             border: 1px solid #d62041;
         }
 
+        .travel-date {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #4b4b4b;
+        }
+
     </style>
 
 </head>
 <body>
 
-<%
-String pkgParam = request.getParameter("packageId");
-int packageId = (pkgParam != null && !pkgParam.isEmpty())
-        ? Integer.parseInt(pkgParam)
-        : -1;
-
-List<TravellerDetails> tList =
-        (List<TravellerDetails>) request.getAttribute("travellerlist");
-System.out.println(tList);
-%>
-
-
-<!-- SHOW TRAVELLER LIST BELOW -->
-<% if (tList != null && !tList.isEmpty()) { %>
-
 <div class="container">
-    <div class="form-card">
-        <h2 class="section-title">Added Travellers</h2>
 
-        <% for (TravellerDetails t : tList) { %>
+    <!-- SHOW SELECTED TRAVEL DATE -->
+    <% if(travelDate != null) { %>
+        <p class="travel-date">Selected Travel Date: <strong><%= travelDate %></strong></p>
+    <% } %>
 
-        <div class="traveller-item">
-            <div class="traveller-info">
-                <h3><%= t.getFullname() %></h3>
-                <p><strong>Age:</strong> <%= t.getAge() %></p>
-                <p><strong>Gender:</strong> <%= t.getGender() %></p>
-                <p><strong>ID Proof:</strong> <%= t.getIdproof() %> — <%= t.getIdnumber() %></p>
-                <p><strong>Medical Notes:</strong>
-                    <%= (t.getMedicalconditions() == null || t.getMedicalconditions().trim().isEmpty())
-                            ? "None"
-                            : t.getMedicalconditions() %>
-                </p>
-            </div>
+    <!-- SHOW EXISTING TRAVELLERS -->
+    <% if (tList != null && !tList.isEmpty()) { %>
+        <div class="form-card">
+            <h2 class="section-title">Added Travellers</h2>
 
-            <div class="traveller-actions">
+            <% for (TravellerDetails t : tList) { %>
+                <div class="traveller-item">
+                    <div class="traveller-info">
+                        <h3><%= t.getFullname() %></h3>
+                        <p><strong>Age:</strong> <%= t.getAge() %></p>
+                        <p><strong>Gender:</strong> <%= t.getGender() %></p>
+                        <p><strong>ID Proof:</strong> <%= t.getIdproof() %> — <%= t.getIdnumber() %></p>
+                        <p><strong>Medical Notes:</strong>
+                            <%= (t.getMedicalconditions() == null || t.getMedicalconditions().trim().isEmpty()) ? "None" : t.getMedicalconditions() %>
+                        </p>
+                    </div>
 
-                <!-- UPDATE -->
-                <form action="TravellerEditForm" method="get">
-                    <input type="hidden" name="traveller_id" value="<%= t.getTravellerId()  %>">
-                    <input type="hidden" name="package_id" value="<%= packageId %>">
-                    <button class="action-btn update">Update</button>
-                </form>
+                    <div class="traveller-actions">
 
-                <!-- DELETE -->
-                <form action="deletetraveller" method="get"
-                    onsubmit="return confirm('Are you sure you want to delete this traveller?');">
+                        <!-- UPDATE -->
+                        <form action="TravellerEditForm" method="get">
+                            <input type="hidden" name="traveller_id" value="<%= t.getTravellerId()  %>">
+                            <input type="hidden" name="package_id" value="<%= packageId %>">
+                            <button class="action-btn update">Update</button>
+                        </form>
 
-                    <input type="hidden" name="traveller_id" value="<%= t.getTravellerId()  %>">
-                    <input type="hidden" name="package_id" value="<%= packageId %>">
+                        <!-- DELETE -->
+                        <form action="deletetraveller" method="get"
+                            onsubmit="return confirm('Are you sure you want to delete this traveller?');">
 
-                    <button class="action-btn delete">Delete</button>
-                </form>
+                            <input type="hidden" name="traveller_id" value="<%= t.getTravellerId()  %>">
+                            <input type="hidden" name="package_id" value="<%= packageId %>">
 
-            </div>
+                            <button class="action-btn delete">Delete</button>
+                        </form>
+
+                    </div>
+                </div>
+            <% } %>
+
         </div>
+    <% } %>
 
-        <% } %>
-
-    </div>
-</div>
-
-<% } %>
-
-<div class="container">
-
-    <!-- PAGE HEADER -->
+    <!-- ADD TRAVELLER FORM -->
     <h1 class="page-title">Traveller Information</h1>
     <p class="page-sub">Enter details of all travellers to continue</p>
 
-    <!-- ADD TRAVELLER FORM -->
     <form action="addtraveller" method="post">
 
         <input type="hidden" name="package_id" value="<%=packageId %>">
+        <input type="hidden" name="travelDate" value="<%= travelDate %>">
 
         <div class="form-card">
             <h2 class="section-title">Add Traveller</h2>
@@ -263,8 +269,9 @@ System.out.println(tList);
         </div>
     </form>
 
-    <button class="book-btn">Proceed to Payment</button>
-
+    <a href="summary.jsp?packageId=<%= packageId %>&travelDate=<%= travelDate %>" class="book-btn">
+    Proceed to Summary
+</a>
 </div>
 
 </body>

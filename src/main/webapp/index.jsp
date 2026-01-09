@@ -347,7 +347,7 @@
           </div>
           <div class="pkg-meta">
             <div class="price">₹28,999</div>
-            <button class="book-btn" onclick="openPackage('Paris')">Book</button>
+            <button class="book-btn" "><a href="packages">Book</a></button>
           </div>
         </div>
 
@@ -361,7 +361,7 @@
           </div>
           <div class="pkg-meta">
             <div class="price">₹34,499</div>
-            <button class="book-btn" onclick="openPackage('Bali')">Book</button>
+            <button class="book-btn" ><a href="packages">Book</a></button>
           </div>
         </div>
 
@@ -375,7 +375,7 @@
           </div>
           <div class="pkg-meta">
             <div class="price">₹62,000</div>
-            <button class="book-btn" onclick="openPackage('Maldives')">Book</button>
+            <button class="book-btn" ><a href="packages">Book</a></button>
           </div>
         </div>
 
@@ -389,7 +389,7 @@
           </div>
           <div class="pkg-meta">
             <div class="price">₹45,200</div>
-            <button class="book-btn" onclick="openPackage('Tokyo')">Book</button>
+            <button class="book-btn"><a href="packages">Book</a></button>
           </div>
         </div>
       </div>

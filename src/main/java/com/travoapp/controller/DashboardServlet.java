@@ -60,7 +60,7 @@ public class DashboardServlet extends HttpServlet {
         List<String> offers = bookingDAO.getOffers();
 
 
-        List<Package> allPackages = packageDAO.findPackageList(); // If you have this method
+        List<Package> allPackages = packageDAO.findPackageList();
 
 
 

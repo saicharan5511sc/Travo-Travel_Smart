@@ -37,13 +37,16 @@ public class TravellerAddServlet extends HttpServlet{
 
 		int userId = user.getUserId();
 		int package_id=Integer.parseInt(req.getParameter("package_id"));
+		String travelDate = req.getParameter("travelDate");
 		TravellerDetails traveller=new TravellerDetails(fullname,age,gender,idproof,idnumber,medicalconditions,userId,package_id);
 		boolean isAdded=tDao.addTraveller(traveller);
 
+		if(travelDate != null && !travelDate.isEmpty()) {
+	        req.getSession().setAttribute("travelDate", travelDate);
+	    }
 		req.setAttribute("packageId", package_id);
 		if(isAdded) {
-			resp.sendRedirect("travellerDisplay?packageId=" + package_id);
-
+		    resp.sendRedirect("travellerDisplay?packageId=" + package_id + "&travelDate=" + travelDate);
 		}else {
 
 		}

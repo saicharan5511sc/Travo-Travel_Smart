@@ -33,7 +33,6 @@ public class TravellerUpdateServlet extends HttpServlet {
             return;
         }
 
-        // 2️⃣ Read parameters safely
         String travellerIdStr = req.getParameter("traveller_id");
         String packageIdStr   = req.getParameter("package_id");
 
@@ -46,7 +45,7 @@ public class TravellerUpdateServlet extends HttpServlet {
         int package_id   = Integer.parseInt(packageIdStr);
         int user_id      = user.getUserId();
 
-        // 3️⃣ Read form fields
+       
         String fullname = req.getParameter("name");
         int age = Integer.parseInt(req.getParameter("age"));
         String gender = req.getParameter("gender");
@@ -54,7 +53,7 @@ public class TravellerUpdateServlet extends HttpServlet {
         long idnumber = Long.parseLong(req.getParameter("id_no"));
         String medicalconditions = req.getParameter("notes");
 
-        // 4️⃣ Create TravellerDetails object (WITH traveller_id)
+       
         TravellerDetails traveller = new TravellerDetails();
         traveller.setTravellerId(traveller_id);
         traveller.setFullname(fullname);
@@ -66,10 +65,10 @@ public class TravellerUpdateServlet extends HttpServlet {
         traveller.setUserid(user_id);
         traveller.setPackageid(package_id);
 
-        // 5️⃣ Update
+        
         boolean isUpdated = tDao.updateTraveller(traveller);
 
-        // 6️⃣ Redirect (same pattern as Add)
+        
         if (isUpdated) {
             resp.sendRedirect("travellerDisplay?packageId=" + package_id);
         } else {

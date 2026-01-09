@@ -24,6 +24,12 @@ public class TravellerDisplayServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 	int packageId=Integer.parseInt(req.getParameter("packageId"));
+	 String travelDate = req.getParameter("travelDate"); // get selected date
+
+	    // Save travel date in session
+	    if(travelDate != null && !travelDate.isEmpty()) {
+	        req.getSession().setAttribute("travelDate", travelDate);
+	    }
 	Users user = (Users) req.getSession().getAttribute("users");
 	int userId = user.getUserId();
 	List<TravellerDetails> tList=tDao.getTravellerDetails(userId,packageId);

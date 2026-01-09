@@ -91,7 +91,7 @@ public class PackageDAOImpl implements PackageDAO {
                 pkg.setPrice(rs.getDouble("price"));
                 pkg.setDescription(rs.getString("description"));
                 pkg.setImageUrl(rs.getString("image_url"));
-
+                
             }
 
             if (pkg != null) {
@@ -103,6 +103,7 @@ public class PackageDAOImpl implements PackageDAO {
                 pkg.setItinerary(fetchItinerary(con, "SELECT day_number,description FROM package_itinerary WHERE package_id=?", id));
                 pkg.setHotels(fetchHotelList(con, "SELECT hotel_name,star_rating FROM package_hotels WHERE package_id=?", id));
 
+                pkg.setAvailableDates(fetchDates(con, id));
             }
 
         } catch (Exception e) {
@@ -155,6 +156,61 @@ public class PackageDAOImpl implements PackageDAO {
         }
 
         return list;
+    }
+    private List<String> fetchDates(Connection con, int packageId) throws SQLException {
+        List<String> dates = new ArrayList<>();
+
+        String sql = """
+            SELECT travel_date 
+            FROM package_dates 
+            WHERE package_id=? AND status='AVAILABLE'
+            ORDER BY travel_date
+        """;
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, packageId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                dates.add(rs.getDate("travel_date").toString());
+            }
+        }
+        return dates;
+    }
+
+    public List<Package> getPackagesByAgencyId(int agencyId) {
+
+        List<Package> packages = new ArrayList<>();
+
+        String sql = """
+            SELECT * FROM packages
+            WHERE agency_id = ?
+        """;
+
+        try (Connection con = ProvideConnection.getConnector();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, agencyId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Package pkg = new Package();
+                pkg.setPackageId(rs.getInt("package_id"));
+                pkg.setDestination(rs.getString("destination"));
+                pkg.setTripType(rs.getString("trip_type"));
+                pkg.setPrice(rs.getDouble("price"));
+                pkg.setDescription(rs.getString("description"));
+                pkg.setImageUrl(rs.getString("image_url"));
+                pkg.setAgencyId(rs.getInt("agency_id"));
+
+                packages.add(pkg);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return packages;
     }
 
 }
