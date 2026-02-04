@@ -8,7 +8,7 @@ public class Users {
 	private long phone;
 	private String city;
 	public Users() {
-		
+
 	}
 	public Users(String name, String email, String password, long phone, String city) {
 		super();
@@ -55,7 +55,7 @@ public class Users {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
-	
-	
+
+
+
 }

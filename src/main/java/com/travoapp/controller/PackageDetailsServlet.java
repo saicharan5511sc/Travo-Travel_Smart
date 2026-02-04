@@ -2,21 +2,21 @@ package com.travoapp.controller;
 
 import java.io.IOException;
 
+import com.travoapp.model.dao.PackageDAO;
+import com.travoapp.model.dao.PackageDAOImpl;
+import com.travoapp.model.dto.Package;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.travoapp.model.dao.PackageDAO;
-import com.travoapp.model.dao.PackageDAOImpl;
-import com.travoapp.model.dto.Package;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/packageDetails")
 public class PackageDetailsServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-
     private PackageDAO packageDAO;
 
     @Override
@@ -29,10 +29,9 @@ public class PackageDetailsServlet extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-          
             String idParam = request.getParameter("packageId");
-            String image=request.getParameter("packageimg");
-            System.out.println(idParam);
+            HttpSession session=request.getSession();
+
             if (idParam == null || idParam.isEmpty()) {
                 response.sendRedirect("error.jsp");
                 return;
@@ -40,19 +39,20 @@ public class PackageDetailsServlet extends HttpServlet {
 
             int packageId = Integer.parseInt(idParam);
 
-            // FETCH PACKAGE DETAILS
             Package pkg = packageDAO.getPackageById(packageId);
+            
 
             if (pkg == null) {
-                response.sendRedirect("notFound.jsp");
+                request.setAttribute("errorMessage", "Package not found");
+                request.getRequestDispatcher("error.jsp").forward(request, response);
                 return;
             }
 
          
             request.setAttribute("package", pkg);
-            request.setAttribute("packageImg", image);
+            session.setAttribute("packageId", packageId);
 
-  
+
             request.getRequestDispatcher("bookPackage.jsp").forward(request, response);
 
         } catch (Exception e) {

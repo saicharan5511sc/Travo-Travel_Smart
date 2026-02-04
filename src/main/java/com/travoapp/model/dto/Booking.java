@@ -1,5 +1,6 @@
 package com.travoapp.model.dto;
 
+import java.sql.Date;
 
 public class Booking {
 
@@ -10,18 +11,18 @@ public class Booking {
     private String destination;
     private String tripType;
 
-    private String bookingDate;    
-    private String travelDate;      
-    private String status;         
+    private Date bookingDate;
+    private Date travelDate;
+    private String status;
 
     private double amount;
 
-    private String imageUrl;        
+    private String imageUrl;
 
     public Booking() {}
 
     public Booking(int bookingId, int userId, int packageId, String destination, String tripType,
-                   String bookingDate, String travelDate, String status, double amount, String imageUrl) {
+                   Date bookingDate, Date travelDate, String status, double amount, String imageUrl) {
 
         this.bookingId = bookingId;
         this.userId = userId;
@@ -56,11 +57,11 @@ public class Booking {
         return tripType;
     }
 
-    public String getBookingDate() {
+    public Date getBookingDate() {
         return bookingDate;
     }
 
-    public String getTravelDate() {
+    public Date getTravelDate() {
         return travelDate;
     }
 
@@ -97,11 +98,11 @@ public class Booking {
         this.tripType = tripType;
     }
 
-    public void setBookingDate(String bookingDate) {
+    public void setBookingDate(Date bookingDate) {
         this.bookingDate = bookingDate;
     }
 
-    public void setTravelDate(String travelDate) {
+    public void setTravelDate(Date travelDate) {
         this.travelDate = travelDate;
     }
 

@@ -136,7 +136,7 @@
                     <div class="recommended-body">
                         <div class="recommended-title"><%= r.getDestination() %></div>
                         <div class="recommended-price">Starting at ₹<%= (int)r.getAmount() %></div>
-                        <a href="PackageDetails?id=<%= r.getBookingId() %>" class="recommended-btn">View Package</a>
+                        <a href="packageDetails?id=<%= r.getBookingId() %>" class="recommended-btn">View Package</a>
                     </div>
                 </div>
 

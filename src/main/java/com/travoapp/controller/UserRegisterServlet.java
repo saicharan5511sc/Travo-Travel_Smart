@@ -2,13 +2,11 @@ package com.travoapp.controller;
 
 import java.io.IOException;
 
-import jakarta.servlet.*;
-
-
 import com.travoapp.model.dao.UserDAO;
 import com.travoapp.model.dao.UserDAOImpl;
 import com.travoapp.model.dto.Users;
 
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +19,7 @@ public class UserRegisterServlet extends HttpServlet {
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
+
 	String name=req.getParameter("name");
 	String email=req.getParameter("email");
 	String password=req.getParameter("password");
@@ -35,9 +33,9 @@ public class UserRegisterServlet extends HttpServlet {
 		req.getRequestDispatcher("Register.jsp").forward(req, resp);
 	}
 
-		
-		
-		
+
+
+
 		//super.doPost(req, resp);
 	}
 }

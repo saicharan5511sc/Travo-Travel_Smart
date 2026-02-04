@@ -10,9 +10,29 @@ public class Package {
     private double price;
     private String description;
     private String imageUrl;
+    private int agencyId;
+    private Agencies agency;
+
+    public Agencies getAgency() {
+		return agency;
+	}
 
 
-    private List<String> galleryImages;
+	public void setAgency(Agencies agency) {
+		this.agency = agency;
+	}
+
+
+	public int getAgencyId() {
+		return agencyId;
+	}
+
+
+	public void setAgencyId(int agencyId) {
+		this.agencyId = agencyId;
+	}
+
+	private List<String> galleryImages;
     private String duration;
     private String locationsCovered;
 
@@ -21,6 +41,9 @@ public class Package {
     private List<String> exclusions;
     private List<String> itinerary;
     private List<String> hotels;
+    
+    private List<String> availableDates;
+
 
     private double gstPercentage = 5.0;
     private double serviceFee = 299.0;
@@ -38,7 +61,7 @@ public class Package {
 
 
     public Package() {
-		
+
 	}
 
 
@@ -79,7 +102,7 @@ public class Package {
     public String getDescription() { return description; }
     public String getImageUrl() { return imageUrl; }
 
- 
+
 
     public List<String> getGalleryImages() {
         return galleryImages;
@@ -159,5 +182,12 @@ public class Package {
 
     public void setServiceFee(double serviceFee) {
         this.serviceFee = serviceFee;
+    }
+    public List<String> getAvailableDates() {
+        return availableDates;
+    }
+
+    public void setAvailableDates(List<String> availableDates) {
+        this.availableDates = availableDates;
     }
 }

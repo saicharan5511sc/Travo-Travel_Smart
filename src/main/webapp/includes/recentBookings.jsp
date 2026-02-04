@@ -143,7 +143,7 @@
                         <div class="recent-destination"><%= rb.getDestination() %></div>
                         <div class="recent-meta">Booked On: <%= rb.getBookingDate() %></div>
                         <div class="recent-amount">₹<%= (int)rb.getAmount() %></div>
-                        <a href="BookingDetails?id=<%= rb.getBookingId() %>" class="recent-btn">View Details</a>
+                        <a href="BookingViewServlet?bookingId=<%= rb.getBookingId() %>" class="recent-btn">View Details</a>
                     </div>
                 </div>
 

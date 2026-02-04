@@ -8,4 +8,5 @@ public interface PackageDAO {
 	List<Package> findPackageList();
 	 List<Package> findPopularPackages();
 	 Package getPackageById(int id);
+	 List<Package> getPackagesByAgencyId(int agencyId);
 }

@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.travoapp.model.dto.Package" %>
 
@@ -140,28 +141,67 @@
             </div>
         </div>
 
-        <!-- RIGHT SIDE PRICE CARD -->
-        <div>
-            <div class="billing-card">
-                <h3 class="bill-title">Price Summary</h3>
+  <!-- RIGHT SIDE PRICE CARD -->
+<div>
+    <div class="billing-card">
+        <h3 class="bill-title">Price Summary</h3>
 
-                <div class="bill-row">
-                    <span>Base Price</span>
-                    <span>₹<%= pkg.getPrice() %></span>
-                </div>
-
-                <hr>
-
-                <div class="bill-total">
-                    <span>Total Amount</span>
-                    <span class="bill-amount">₹<%= pkg.getPrice() %></span>
-                </div>
-
-                <button class="book-btn">
-                    <a href="travellerDetails.jsp?packageId=<%= pkg.getPackageId() %>">Book Now</a>
-                </button>
-            </div>
+        <div class="bill-row">
+            <span>Base Price</span>
+            <span>₹<%= pkg.getPrice() %></span>
         </div>
+
+        <hr>
+
+        <div class="bill-total">
+            <span>Total Amount</span>
+            <span class="bill-amount">₹<%= pkg.getPrice() %></span>
+        </div>
+
+        <!-- BOOKING FORM -->
+        <form action="travellerDisplay" method="get">
+
+            <input type="hidden" name="packageId" value="<%= pkg.getPackageId() %>">
+
+            <!-- TRAVEL DATE SELECTION -->
+            <div class="bill-row" style="margin-top:18px; flex-direction:column; gap:6px;">
+                <label style="font-weight:600;">Select Travel Date</label>
+
+                <select name="travelDate"
+                        required
+                        style="
+                            width:100%;
+                            padding:12px;
+                            border-radius:10px;
+                            border:1px solid #ccc;
+                            font-size:1rem;
+                        ">
+                    <option value="">-- Choose a date --</option>
+
+                    <% 
+                        if (pkg.getAvailableDates() != null && !pkg.getAvailableDates().isEmpty()) {
+                            for (String d : pkg.getAvailableDates()) {
+                    %>
+                        <option value="<%= d %>"><%= d %></option>
+                    <% 
+                            }
+                        } else {
+                    %>
+                        <option disabled>No dates available</option>
+                    <% } %>
+                </select>
+            </div>
+
+            <button type="submit"
+                    class="book-btn"
+                    style="margin-top:18px;">
+                Proceed to Book
+            </button>
+
+        </form>
+    </div>
+</div>
+
 
     </div>
 

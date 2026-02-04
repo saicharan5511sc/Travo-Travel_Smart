@@ -18,4 +18,8 @@ public interface BookingDAO {
 	    List<Booking> getRecommendedTrips(int userId);
 
 	    List<String> getOffers();
+	    boolean createBooking(Booking booking);
+	    int getTravellerCount(int userId, int packageId);
+	    public void updateBookingStatus(int bookingId, String status);
+	    public Booking getBookingById(int bookingId);
 }

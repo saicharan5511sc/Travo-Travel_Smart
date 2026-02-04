@@ -26,9 +26,7 @@ if(u == null){
 
 <div class="container">
 
-  <!-- ============================
-       NAVBAR
-  ============================= -->
+
   <header class="navbar fade-in">
   
       <!-- LEFT -->
@@ -37,11 +35,11 @@ if(u == null){
       </div>
 
       <!-- MIDDLE LINKS -->
-      <nav class="nav-links">
-        <a href="<%= request.getContextPath() %>/packages">Packages</a>
-        <a href="#">Bookings</a>
-        <a href="#">Agencies</a>
-      </nav>
+     <nav class="nav-links">
+    <a href="<%= request.getContextPath() %>/packages">Packages</a>
+    <a href="<%= request.getContextPath() %>/AllBooking.jsp">Bookings</a>
+    <a href="<%= request.getContextPath() %>/agencies">Agencies</a>
+</nav>
 
       <!-- RIGHT PROFILE -->
       <div class="nav-right">
@@ -56,7 +54,7 @@ if(u == null){
             <hr>
             <a class="profile-item" href="profile.jsp">View Profile</a>
             <a class="profile-item" href="#">Settings</a>
-            <a class="profile-item logout" href="LogoutServlet">Logout</a>
+            <a class="profile-item logout" href="index.jsp">Logout</a>
           </div>
         </div>
 

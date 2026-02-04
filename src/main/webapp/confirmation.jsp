@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +11,7 @@
 
 <div class="container">
 
-    <h1 class="page-title">🎉 Booking Confirmed!</h1>
+    <h1 class="page-title">Booking Confirmed!</h1>
     <p class="page-sub">Your Bali trip is officially booked.</p>
 
     <div class="success-card">
@@ -19,8 +21,8 @@
         <p>A confirmation email has been sent to:</p>
         <strong><%= request.getAttribute("email") %></strong>
     </div>
-
-    <a href="dashboard.jsp" class="book-btn">Go to Dashboard</a>
+<br>
+    <a href="Dashboard.jsp" class="book-btn">Go to Dashboard</a>
 
 </div>
 
